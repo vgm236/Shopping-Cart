@@ -1,5 +1,6 @@
+# shopping_cart.py
+
 import datetime
-from time import sleep
 
 # LIST OF PRODUCTS
 products = [
@@ -26,15 +27,22 @@ products = [
 ] # based on data from Instacart: https://www.instacart.com/datasets/grocery-shopping-2017
 
 # INPUT IDENTIFIER
+
 ## CREATE NEW LIST - FILTERING
-id =  []
-for p in products:
-    id.append(p["id"])
+def list_products(list_id, list_products):
+    matching_products = [p for p in list_products if str(p["id"]) == str(list_id)]
+    matching_product = matching_products[0]
+    return matching_product
 
 ## WORKING INTO USER CHOICE
+selected_ids = []
 
-user_choice = input("Please input a product identifier:")
-done_choice = ("Done")
+while True:
+    selected_id = input("Please input a product identifier: ")
+    if selected_id == "DONE":
+        break
+    else:
+        selected_ids.append(selected_id)
 
 
 # INTRODUCTION
@@ -52,7 +60,28 @@ print("---------------------------")
 
 print("SELECTED PRODUCTS:")
 
-#TODO
+def to_usd(my_price):
+    return "${0:,.2f}".format(my_price)
+
+subtotal_price = 0
+
+for selected_id in selected_ids:
+    matching_product = list_products(selected_id, products)
+    subtotal_price = subtotal_price + matching_product["price"]
+    print(" ... " + matching_product["name"] + " (" + to_usd(matching_product["price"]) + ")")
+
+# PRICE WITH TAX
+
+TAX_RATE = 0.06
+
+tax = subtotal_price * TAX_RATE
+
+total_price = subtotal_price + tax
+
+print("---------------------------------")
+print("SUBTOTAL: " + to_usd(subtotal_price))
+print("TAX: " + to_usd(tax))
+print("TOTAL: " + to_usd(total_price))
 
 # END OF THE PROGRAM
 print("---------------------------")
