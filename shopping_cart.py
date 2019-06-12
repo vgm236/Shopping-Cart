@@ -1,12 +1,13 @@
 import datetime
+from time import sleep
 
-# INTRODUCTION TO THE PROGRAM
+# INPUT IDENTIFIER
 
-print("---------------------------")
-print("BRAZIL MARKET")
-print("WWW.BRAZILMARKET.COM.BR")
-print("---------------------------")
+#TODO
 
+
+
+# LIST OF PRODUCTS
 products = [
     {"id":1, "name": "Chocolate Sandwich Cookies", "department": "snacks", "aisle": "cookies cakes", "price": 3.50},
     {"id":2, "name": "All-Seasons Salt", "department": "pantry", "aisle": "spices seasonings", "price": 4.99},
@@ -30,11 +31,27 @@ products = [
     {"id":20, "name": "Pomegranate Cranberry & Aloe Vera Enrich Drink", "department": "beverages", "aisle": "juice nectars", "price": 4.25}
 ] # based on data from Instacart: https://www.instacart.com/datasets/grocery-shopping-2017
 
-print(products)
-# pprint(products)
+# INTRODUCTION
+print("---------------------------")
+print("WELCOME TO BRAZIL MARKET")
+print("WWW.BRAZILMARKET.COM.BR")
+print("---------------------------")
 
+# PRINT DATE AND TIME
+now = datetime.datetime.now()
+print("CHECKOUT AT: " + now.strftime("%Y-%m-%d %I:%M:%S %p"))
+print("---------------------------")
 
+# SELECTED PRODUCT LIST AND PRICES
 
+print("SELECTED PRODUCTS:")
+
+#TODO
+
+# END OF THE PROGRAM
+print("---------------------------")
+print("THANKS, SEE YOU AGAIN SOON!")
+print("---------------------------")
 
 #>(shopping-env)  --->> python shopping_cart.py
 #>Please input a product identifier: 1
