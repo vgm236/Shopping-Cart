@@ -57,7 +57,6 @@ print("CHECKOUT AT: " + now.strftime("%Y-%m-%d %I:%M:%S %p"))
 print("---------------------------")
 
 # SELECTED PRODUCT LIST AND PRICES
-
 print("SELECTED PRODUCTS:")
 
 def to_usd(my_price):
