@@ -34,12 +34,15 @@ def list_products(list_id, list_products):
     matching_product = matching_products[0]
     return matching_product
 
-## WORKING INTO USER CHOICE
+## WORKING INTO USER CHOICE 
 selected_ids = []
 
 while True:
     selected_id = input("Please input a product identifier: ")
     if selected_id == "DONE":
+        break
+    while selected_id not in str(list_products):
+        print("ID Not found. Please try again.")
         break
     else:
         selected_ids.append(selected_id)
