@@ -1,12 +1,6 @@
 import datetime
 from time import sleep
 
-# INPUT IDENTIFIER
-
-#TODO
-
-
-
 # LIST OF PRODUCTS
 products = [
     {"id":1, "name": "Chocolate Sandwich Cookies", "department": "snacks", "aisle": "cookies cakes", "price": 3.50},
@@ -30,6 +24,18 @@ products = [
     {"id":19, "name": "Gluten Free Quinoa Three Cheese & Mushroom Blend", "department": "dry goods pasta", "aisle": "grains rice dried goods", "price": 3.99},
     {"id":20, "name": "Pomegranate Cranberry & Aloe Vera Enrich Drink", "department": "beverages", "aisle": "juice nectars", "price": 4.25}
 ] # based on data from Instacart: https://www.instacart.com/datasets/grocery-shopping-2017
+
+# INPUT IDENTIFIER
+## CREATE NEW LIST - FILTERING
+id =  []
+for p in products:
+    id.append(p["id"])
+
+## WORKING INTO USER CHOICE
+
+user_choice = input("Please input a product identifier:")
+done_choice = ("Done")
+
 
 # INTRODUCTION
 print("---------------------------")
