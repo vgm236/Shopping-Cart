@@ -2,6 +2,7 @@
 
 import datetime # helps to give date and time correctly
 import operator # helps to sort correctly
+import os.path # helps to save in a different folder
 
 # LIST OF PRODUCTS
 products = [
@@ -102,7 +103,9 @@ print("---------------------------")
 
 # WRITING RECEIPT
 
-file_name = "my_message.txt"
+save_path = 'C:/Users/Owner/Desktop/NYU-MBA/Programming/Files/Shopping-Cart/receipts'
+
+file_name = os.path.join(save_path, now.strftime("%Y-%m-%d-%H-%M-%S-%f") +".txt")
 with open(file_name, "w") as file: # "w" means "open the file for writing"
     file.write("---------------------------")
     file.write("\n")
@@ -118,6 +121,10 @@ with open(file_name, "w") as file: # "w" means "open the file for writing"
     file.write("\n")
     file.write("SELECTED PRODUCTS:")
     file.write("\n")
+    for selected_id in selected_ids:
+        matching_product = list_products(selected_id, products)
+        subtotal_price = subtotal_price + matching_product["price"]
+        file.write(" ... " + matching_product["name"] + " (" + to_usd(matching_product["price"]) + ")" +"\n")
     file.write("---------------------------")
     file.write("\n")  
     file.write("SUBTOTAL: " + to_usd(subtotal_price))
@@ -132,14 +139,6 @@ with open(file_name, "w") as file: # "w" means "open the file for writing"
     file.write("\n")  
     file.write("---------------------------")
     file.write("\n")   
+    # PRINTING RECEIPT (from https://stackoverflow.com/questions/12723818/print-to-standard-printer-from-python)
+    os.startfile(file_name, "print")
 
-
-print("---------------------------------")
-print("SUBTOTAL: " + to_usd(subtotal_price))
-print("TAX: " + to_usd(tax))
-print("TOTAL: " + to_usd(total_price))
-
-# END OF THE PROGRAM
-print("---------------------------")
-print("THANKS, SEE YOU AGAIN SOON!")
-print("---------------------------")
