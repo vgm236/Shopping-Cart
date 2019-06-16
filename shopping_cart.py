@@ -1,6 +1,7 @@
 # shopping_cart.py
 
-import datetime
+import datetime # helps to give date and time correctly
+import operator # helps to sort correctly
 
 # LIST OF PRODUCTS
 products = [
@@ -23,16 +24,21 @@ products = [
     {"id":17, "name": "Rendered Duck Fat", "department": "meat seafood", "aisle": "poultry counter", "price": 9.99},
     {"id":18, "name": "Pizza for One Suprema Frozen Pizza", "department": "frozen", "aisle": "frozen pizza", "price": 12.50},
     {"id":19, "name": "Gluten Free Quinoa Three Cheese & Mushroom Blend", "department": "dry goods pasta", "aisle": "grains rice dried goods", "price": 3.99},
-    {"id":20, "name": "Pomegranate Cranberry & Aloe Vera Enrich Drink", "department": "beverages", "aisle": "juice nectars", "price": 4.25}
+    {"id":20, "name": "Pomegranate Cranberry & Aloe Vera Enrich Drink", "department": "beverages", "aisle": "juice nectars", "price": 4.25},
+    {"id":21, "name": "Organic Bananas", "department": "fruits", "aisle": "juice nectars", "price": 0.79}
 ] # based on data from Instacart: https://www.instacart.com/datasets/grocery-shopping-2017
 
 # INPUT IDENTIFIER
 
 ## CREATE NEW LIST - FILTERING
-def list_products(list_id, list_products):
-    matching_products = [p for p in list_products if str(p["id"]) == str(list_id)]
+def list_products(list_id, all_products):
+    matching_products = [p for p in all_products if str(p["id"]) == str(list_id)]
     matching_product = matching_products[0]
     return matching_product
+
+## CREATE VALID IDS
+valid_ids = sorted(products, key=operator.itemgetter('id'))
+
 
 ## WORKING INTO USER CHOICE 
 selected_ids = []
@@ -41,7 +47,11 @@ while True:
     selected_id = input("Please input a product identifier: ")
     if selected_id == "DONE":
         break
-    while selected_id not in str(list_products):
+    elif selected_id == "Done":
+        break
+    elif selected_id == "done":
+        break
+    while selected_id not in str(valid_ids):
         print("ID Not found. Please try again.")
         break
     else:
@@ -74,7 +84,7 @@ for selected_id in selected_ids:
 
 # PRICE WITH TAX
 
-TAX_RATE = 0.06
+TAX_RATE = 0.0874
 
 tax = subtotal_price * TAX_RATE
 
