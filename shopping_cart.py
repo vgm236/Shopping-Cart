@@ -99,3 +99,47 @@ print("TOTAL: " + to_usd(total_price))
 print("---------------------------")
 print("THANKS, SEE YOU AGAIN SOON!")
 print("---------------------------")
+
+# WRITING RECEIPT
+
+file_name = "my_message.txt"
+with open(file_name, "w") as file: # "w" means "open the file for writing"
+    file.write("---------------------------")
+    file.write("\n")
+    file.write("WELCOME TO BRAZIL MARKET")
+    file.write("\n")
+    file.write("WWW.BRAZILMARKET.COM.BR")
+    file.write("\n")
+    file.write("---------------------------")
+    file.write("\n")
+    file.write("CHECKOUT AT: " + now.strftime("%Y-%m-%d %I:%M:%S %p"))
+    file.write("\n")
+    file.write("---------------------------")
+    file.write("\n")
+    file.write("SELECTED PRODUCTS:")
+    file.write("\n")
+    file.write("---------------------------")
+    file.write("\n")  
+    file.write("SUBTOTAL: " + to_usd(subtotal_price))
+    file.write("\n")  
+    file.write("TAX: " + to_usd(tax))
+    file.write("\n")  
+    file.write("TOTAL: " + to_usd(total_price))
+    file.write("\n")
+    file.write("---------------------------")
+    file.write("\n")  
+    file.write("THANKS, SEE YOU AGAIN SOON!")
+    file.write("\n")  
+    file.write("---------------------------")
+    file.write("\n")   
+
+
+print("---------------------------------")
+print("SUBTOTAL: " + to_usd(subtotal_price))
+print("TAX: " + to_usd(tax))
+print("TOTAL: " + to_usd(total_price))
+
+# END OF THE PROGRAM
+print("---------------------------")
+print("THANKS, SEE YOU AGAIN SOON!")
+print("---------------------------")
