@@ -3,6 +3,11 @@
 import datetime # helps to give date and time correctly
 import operator # helps to sort correctly
 import os.path # helps to save in a different folder
+import gspread # helps to integrate with google sheets
+
+from dotenv import load_dotenv # packages for email
+from sendgrid import SendGridAPIClient # packages for email
+from sendgrid.helpers.mail import Mail # packages for email
 
 # LIST OF PRODUCTS
 products = [
@@ -141,4 +146,55 @@ with open(file_name, "w") as file: # "w" means "open the file for writing"
     file.write("\n")   
     # PRINTING RECEIPT (from https://stackoverflow.com/questions/12723818/print-to-standard-printer-from-python)
     os.startfile(file_name, "print")
+
+load_dotenv()
+SENDGRID_API_KEY = os.environ.get("SENDGRID_API_KEY", "OOPS, please set env var called 'SENDGRID_API_KEY'")
+MY_ADDRESS = os.environ.get("MY_EMAIL_ADDRESS", "OOPS, please set env var called 'MY_EMAIL_ADDRESS'")
+
+#E-MAIL OPTION
+with open(file_name, "r") as file: # "r" means "open the file for reading"
+    contents = file.read()
+
+subject = "Your receipt from Brazil Market"
+html_content = contents
+
+while True:
+    selected_id = input("Do you want your receipt emailed to you? (y or n): ")
+    if selected_id == "y":
+        message = Mail(from_email=MY_ADDRESS, to_emails=MY_ADDRESS, subject=subject, html_content=html_content)
+        client = SendGridAPIClient(SENDGRID_API_KEY) #> <class 'sendgrid.sendgrid.SendGridAPIClient>
+        print("CLIENT:", type(client))
+        try:
+            response = client.send(message)
+
+            print("RESPONSE:", type(response)) #> <class 'python_http_client.client.Response'>
+            print(response.status_code) #> 202 indicates SUCCESS
+            print(response.body)
+            print(response.headers)
+        except Exception as e:
+            print("OOPS", e.message)
+        break
+
+    elif selected_id == "Y":
+        message = Mail(from_email=MY_ADDRESS, to_emails=MY_ADDRESS, subject=subject, html_content=html_content)
+        client = SendGridAPIClient(SENDGRID_API_KEY) #> <class 'sendgrid.sendgrid.SendGridAPIClient>
+        print("CLIENT:", type(client))
+        try:
+            response = client.send(message)
+
+            print("RESPONSE:", type(response)) #> <class 'python_http_client.client.Response'>
+            print(response.status_code) #> 202 indicates SUCCESS
+            print(response.body)
+            print(response.headers)
+        except Exception as e:
+            print("OOPS", e.message)
+        break
+    else:
+        break
+
+
+print(contents)
+
+
+
 
